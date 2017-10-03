@@ -11,6 +11,8 @@ before_install:
 
 addons:
   apt:
+    sources:
+    - ubuntu-toolchain-r-test
     packages:
     - gcc-6 intltool
   # Coverity scan add-on, fires only when pushing to the `coverity_scan` branch
