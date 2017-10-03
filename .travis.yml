@@ -12,7 +12,7 @@ before_install:
 addons:
   apt:
     packages:
-    - intltool
+    - gcc-6 intltool
   # Coverity scan add-on, fires only when pushing to the `coverity_scan` branch
   coverity_scan:
     project:
