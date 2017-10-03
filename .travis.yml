@@ -19,9 +19,12 @@ addons:
       name: "scanmem/scanmem"
       description: "Build submitted via Travis CI"
     notification_email: andreastacchiotti@gmail.com
-    build_command_prepend: "./autogen.sh && ./configure --enable-gui"
+    build_command_prepend: "./autogen.sh && ./configure"
     build_command: "make"
     branch_pattern: coverity_scan
 
 script:
-  - ./autogen.sh && ./configure --enable-gui && make
+  - if [ "${COVERITY_SCAN_BRANCH}" == 1 ]; then exit ; fi
+  - ./autogen.sh && ./configure --enable-gui
+  - make CFLAGS='-O2 -fsanitize=address,undefined'
+  - make check
